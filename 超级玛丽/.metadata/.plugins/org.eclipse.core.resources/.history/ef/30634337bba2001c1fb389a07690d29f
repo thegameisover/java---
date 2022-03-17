@@ -1,0 +1,56 @@
+package superMary;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.JFrame;
+
+public class MyFrame extends JFrame {
+	//储存所有背景的集合
+	private List<background> bg=new ArrayList<>(); 
+	//存储当前的背景
+	private background bgUsing=new background();
+	//用于双缓存
+	private Image offScreanImage=null;
+   public MyFrame()
+   {
+	   setVisible(true);
+	   setSize(800,600);
+	   setLocationRelativeTo(null);
+	   setDefaultCloseOperation(EXIT_ON_CLOSE);
+	   setResizable(false);
+	   setTitle("超级玛丽");
+	   StaticValue.init();
+	   for(int i=1;i<=3;i++)
+	   {
+		   bg.add(new background(i,i==3?true:false));
+	   }
+	   bgUsing=bg.get(1);
+	   //绘制图像
+	   repaint();
+   }
+   @Override
+public void paint(Graphics g) {
+	if(offScreanImage==null)
+	{
+		offScreanImage=createImage(800,600);
+	}
+	Graphics graphics=offScreanImage.getGraphics();
+	graphics.fillRect(0,0,800,600);
+	//绘制背景
+	graphics.drawImage(bgUsing.getImage(),0,0,this);
+	//绘制障碍物
+	for(zhangai p:bgUsing.getAi())
+	{
+		graphics.drawImage(p.getShow(),p.getX(),p.getY(),this);
+	}
+	//将图像绘制到窗口中
+	g.drawImage(offScreanImage,0,0,this);
+}
+   public static void main(String[]args)
+   {
+	   MyFrame frame=new MyFrame();
+   }
+}

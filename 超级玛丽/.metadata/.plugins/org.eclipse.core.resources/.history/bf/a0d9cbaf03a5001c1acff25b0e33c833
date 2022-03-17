@@ -1,0 +1,16 @@
+package superMary;
+
+import java.awt.image.BufferedImage;
+
+public class Enemy implements Runnable{
+	//敌人的坐标
+	int x;
+	int y;
+	//敌人的类型
+	private int type;
+	//判断敌人的运动方向
+	private boolean face_to=true;
+	//显示当前敌人的图像
+	private BufferedImage show;
+
+}

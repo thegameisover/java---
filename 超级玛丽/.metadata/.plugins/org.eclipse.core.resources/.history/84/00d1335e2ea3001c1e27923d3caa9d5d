@@ -1,0 +1,48 @@
+package superMary;
+
+import java.awt.image.BufferedImage;
+
+public class Mario implements Runnable{
+	//马里奥的坐标
+   private int x;
+   private int y;
+   //用于表示当前状态
+   private String status;
+   //用于显示当前状态对应的图片
+   private BufferedImage show=null;
+   //定义一个background对象，用于获取障碍物对象
+   private background backGround=new background();
+   //用来实现马里奥的动作
+   private Thread thread=null;
+   public Mario()
+   {
+	   
+   }
+   public Mario(int x,int y)
+   {
+	   this.x=x;
+	   this.y=y;
+	   status="stand-right";
+	   show=StaticValue.stand_right;
+	   thread=new Thread(this);
+	   thread.start();
+	   
+   }
+   @Override
+public void run() 
+  {
+	   
+  }
+   public int getX()
+   {
+	   return x;
+   }
+   public int getY()
+   {
+	   return y;
+   }
+   public BufferedImage getShow()
+   {
+	   return show;
+   }
+  }

@@ -1,0 +1,8 @@
+package superMary;
+
+public class Music {
+   public Music()
+   {
+	   Player player;
+   }
+}

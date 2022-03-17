@@ -1,0 +1,109 @@
+package superMary;
+
+import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+import java.util.List;
+
+public class background {
+	//当前场景要使用的对象
+   private BufferedImage bg=null;
+   //记录当前是第几个场景
+   private int sort;
+   //判断是否是最后一个场景
+   private boolean flag;
+   
+   //场景中所有障碍物
+   private List<zhangai> ai=new ArrayList<>();
+   
+   public background()
+   {
+	   
+   }
+   
+   public background(int sort,boolean flag)
+   {
+	   this.sort=sort;
+	   this.flag=flag;
+	   if(flag)
+	   {
+		   bg=StaticValue.background02;
+	   }
+	   else
+	   {
+		   bg=StaticValue.background01;
+	   }
+	   //判断是否是第一关
+	   if(sort==1)
+	   {
+		   //绘制第一关图片，上地面type=1，下地面type=2
+		   for(int i=0;i<27;i++)
+		   {
+			   ai.add(new zhangai(i*30,420,1,this));
+		   }
+		   for(int j=0;j<=120;j+=30)
+		   {
+			   for(int i=0;i<27;i++)
+			   {
+				   ai.add(new zhangai(i*30,570-j,2,this));
+			   }
+		   }
+		   
+		   //绘制砖块A
+		   for(int i=120;i<=150;i+=30)
+		   {
+			   ai.add(new zhangai(i,300,7,this));
+		   }
+		   //绘制砖块B~F
+		   for(int i=300;i<=570;i+=30)
+		   {
+			   if(i==360||i==390||i==480||i==510||i==540)
+			   {
+				   ai.add(new zhangai(i,300,7,this));
+			   }
+			   else
+			   {
+				   ai.add(new zhangai(i,300,0,this));
+			   }
+		   }
+		   //绘制砖块G
+		   for(int i=420;i<=450;i+=30)
+		   {
+			   ai.add(new zhangai(i,240,7,this));
+		   }
+		   //绘制水管
+		   for(int i=360;i<=600;i+=25)
+		   {
+			   if(i==360)
+			   {
+				   ai.add(new zhangai(620,i,3,this));
+				   ai.add(new zhangai(645,i,4,this));
+			   }
+			   else
+			   {
+				   ai.add(new zhangai(620,i,5,this));
+				   ai.add(new zhangai(645,i,6,this));
+			   }
+		   }
+		   
+	   }
+   }
+   
+   
+   public BufferedImage getImage()
+   {
+	   return bg;
+   }
+   
+   public int getSort()
+   {
+	   return sort;
+   }
+   public boolean getFlag()
+   {
+	   return flag;
+   }
+   public List<zhangai> getAi()
+   {
+	   return ai;
+   }
+}

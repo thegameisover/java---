@@ -1,0 +1,51 @@
+package superMary;
+
+import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+import java.util.List;
+
+public class background {
+	//当前场景要使用的对象
+   private BufferedImage bg=null;
+   //记录当前是第几个场景
+   private int sort;
+   //判断是否是最后一个场景
+   private boolean flag;
+   
+   //场景中所有障碍物
+   private List<zhangai> ai=new ArrayList<>();
+   
+   public background()
+   {
+	   
+   }
+   
+   public background(int sort,boolean flag)
+   {
+	   this.sort=sort;
+	   this.flag=flag;
+	   if(flag)
+	   {
+		   bg=StaticValue.background02;
+	   }
+	   else
+	   {
+		   bg=StaticValue.background01;
+	   }
+   }
+   
+   public BufferedImage getImage()
+   {
+	   return bg;
+   }
+   
+   public int getSort()
+   {
+	   return sort;
+   }
+   public boolean getFlag()
+   {
+	   return flag;
+   }
+   
+}
